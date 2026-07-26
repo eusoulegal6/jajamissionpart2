@@ -23,7 +23,7 @@ CREATE TABLE public.resource_page_settings (
   platform_url TEXT NOT NULL DEFAULT 'https://tutorvirtualnewhorizons.com.br/',
   tutorial_url TEXT NOT NULL DEFAULT 'https://youtu.be/pNy3IstuRZk?si=bqnbRmkg8EsvxdD6',
   page_title TEXT NOT NULL DEFAULT 'Aulas complementares e plataforma de estudos',
-  page_subtitle TEXT NOT NULL DEFAULT 'Além das aulas particulares, os alunos da New Horizons também têm acesso à nossa plataforma de estudos e a aulas complementares em grupo em diferentes níveis e horários.',
+  page_subtitle TEXT NOT NULL DEFAULT 'Além das aulas particulares, os alunos da Fluency Voyage também têm acesso à nossa plataforma de estudos e a aulas complementares em grupo em diferentes níveis e horários.',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -49,4 +49,4 @@ INSERT INTO public.group_classes (title, description, level, badge, days, displa
 
 -- Seed initial settings
 INSERT INTO public.resource_page_settings (platform_url, tutorial_url, page_title, page_subtitle) VALUES
-('https://tutorvirtualnewhorizons.com.br/', 'https://youtu.be/pNy3IstuRZk?si=bqnbRmkg8EsvxdD6', 'Aulas complementares e plataforma de estudos', 'Além das aulas particulares, os alunos da New Horizons também têm acesso à nossa plataforma de estudos e a aulas complementares em grupo em diferentes níveis e horários.');
+('https://tutorvirtualnewhorizons.com.br/', 'https://youtu.be/pNy3IstuRZk?si=bqnbRmkg8EsvxdD6', 'Aulas complementares e plataforma de estudos', 'Além das aulas particulares, os alunos da Fluency Voyage também têm acesso à nossa plataforma de estudos e a aulas complementares em grupo em diferentes níveis e horários.');

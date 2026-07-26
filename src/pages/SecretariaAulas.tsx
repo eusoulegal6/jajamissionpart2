@@ -99,7 +99,7 @@ ${PLATFORM_URL}
 ${TRIAL_TUTORIAL_URL}
 
 Te esperamos! 🎓💙
-— New Horizons`;
+— Fluency Voyage`;
 };
 
 const buildPrivateInvitationText = (p: { teacherName: string; isAmerican: boolean; isMale: boolean }): string => {
@@ -532,7 +532,7 @@ ${linkBlock}
 ${PLATFORM_URL}
 
 Te esperamos! 💙
-— New Horizons`;
+— Fluency Voyage`;
   };
 
   const buildReminderText = (s: Scheduled): string => {
@@ -544,7 +544,7 @@ Te esperamos! 💙
 ${dateLine}
 ${linkBlock}
 Te esperamos! 💙
-— New Horizons`;
+— Fluency Voyage`;
   };
 
   const buildInvitationFromScheduled = (s: Scheduled): string => {
@@ -566,7 +566,7 @@ ${linkBlock}
 ${PLATFORM_URL}
 
 Te esperamos! 💙
-— New Horizons`;
+— Fluency Voyage`;
   };
 
 

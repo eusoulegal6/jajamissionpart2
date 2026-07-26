@@ -55,7 +55,7 @@ const defaultSettings: PageSettings = {
   tutorial_url: "https://youtu.be/pNy3IstuRZk?si=bqnbRmkg8EsvxdD6",
   page_title: "Aulas complementares e plataforma de estudos",
   page_subtitle:
-    "Além das aulas particulares, os alunos da New Horizons também têm acesso à nossa plataforma de estudos e a aulas complementares que acontecem todos os dias",
+    "Além das aulas particulares, os alunos da Fluency Voyage também têm acesso à nossa plataforma de estudos e a aulas complementares que acontecem todos os dias",
 };
 
 const levelColors: Record<string, string> = {
@@ -295,9 +295,9 @@ const AulasComplementares: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-sky-50/30">
       <Helmet>
-        <title>Aulas Complementares - New Horizons</title>
-        <meta property="og:title" content="Aulas Complementares - New Horizons" />
-        <meta property="og:description" content="Confira as aulas complementares disponíveis na New Horizons. Aulas em grupo para todos os níveis!" />
+        <title>Aulas Complementares - Fluency Voyage</title>
+        <meta property="og:title" content="Aulas Complementares - Fluency Voyage" />
+        <meta property="og:description" content="Confira as aulas complementares disponíveis na Fluency Voyage. Aulas em grupo para todos os níveis!" />
         <meta property="og:image" content={`${window.location.origin}/og-aulas-complementares.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -330,7 +330,7 @@ const AulasComplementares: React.FC = () => {
           <div className="mx-auto mb-8 w-40 sm:w-52">
             <img
               src="/lovable-uploads/fd26bb69-cb53-49fe-95d0-fa9a31c08976.png"
-              alt="New Horizons"
+              alt="Fluency Voyage"
               className="w-full h-auto drop-shadow-md"
             />
           </div>
@@ -466,7 +466,7 @@ const AulasComplementares: React.FC = () => {
                 </h2>
 
                 <p className="mt-3 max-w-md text-[15px] leading-relaxed text-gray-500">
-                  Fique por dentro das novidades, receba materiais extras e conecte-se com outros alunos da New Horizons.
+                  Fique por dentro das novidades, receba materiais extras e conecte-se com outros alunos da Fluency Voyage.
                 </p>
 
                 <Button

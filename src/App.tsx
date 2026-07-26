@@ -67,6 +67,7 @@ import LessonJsonGuide from "./pages/LessonJsonGuide";
 import SuperAdmin from "./pages/SuperAdmin";
 import TextToSpeech from "./pages/TextToSpeech";
 import TextCorrection from "./pages/TextCorrection";
+import TutorRegistration from "./pages/TutorRegistration";
 
 
 
@@ -100,7 +101,7 @@ const GlobalTeacherMode = () => {
   const { isTeacherMode, enableTeacherMode } = useTeacherMode();
   const location = useLocation();
   
-  const hideTeacherButtonPaths = ["/aulas-complementares", "/secretaria"];
+  const hideTeacherButtonPaths = ["/aulas-complementares", "/secretaria", "/become-a-tutor"];
   const shouldHideTeacherButton = hideTeacherButtonPaths.includes(location.pathname);
 
   // Listen for teacher mode activation globally
@@ -380,6 +381,7 @@ const App = () => (
                       } />
                       <Route path="/aulas-complementares" element={<AulasComplementares />} />
                       <Route path="/secretaria" element={<SecretariaAulas />} />
+                      <Route path="/become-a-tutor" element={<TutorRegistration />} />
                       <Route path="/horizons-flix" element={
                         <ProtectedRoute>
                           <HorizonsFlix />

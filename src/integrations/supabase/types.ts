@@ -1574,6 +1574,63 @@ export type Database = {
         }
         Relationships: []
       }
+      tutor_applications: {
+        Row: {
+          availability_notes: string | null
+          current_platforms: string | null
+          email: string | null
+          experience_years: string | null
+          full_name: string
+          id: string
+          languages_taught: string | null
+          notes: string | null
+          package_10_class_price: string | null
+          package_5_class_price: string | null
+          payout_details: string | null
+          phone: string | null
+          preferred_payout: string | null
+          reviewed: boolean | null
+          submission_ip: string | null
+          submitted_at: string | null
+        }
+        Insert: {
+          availability_notes?: string | null
+          current_platforms?: string | null
+          email?: string | null
+          experience_years?: string | null
+          full_name: string
+          id?: string
+          languages_taught?: string | null
+          notes?: string | null
+          package_10_class_price?: string | null
+          package_5_class_price?: string | null
+          payout_details?: string | null
+          phone?: string | null
+          preferred_payout?: string | null
+          reviewed?: boolean | null
+          submission_ip?: string | null
+          submitted_at?: string | null
+        }
+        Update: {
+          availability_notes?: string | null
+          current_platforms?: string | null
+          email?: string | null
+          experience_years?: string | null
+          full_name?: string
+          id?: string
+          languages_taught?: string | null
+          notes?: string | null
+          package_10_class_price?: string | null
+          package_5_class_price?: string | null
+          payout_details?: string | null
+          phone?: string | null
+          preferred_payout?: string | null
+          reviewed?: boolean | null
+          submission_ip?: string | null
+          submitted_at?: string | null
+        }
+        Relationships: []
+      }
       user_flashcards: {
         Row: {
           audio_url: string | null

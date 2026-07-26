@@ -47,7 +47,7 @@ import { installDomMutationSafety } from "./lib/domMutationSafety";
 
 
 // Set document title
-document.title = "New Horizons";
+document.title = "Fluency Voyage";
 
 installDomMutationSafety();
 

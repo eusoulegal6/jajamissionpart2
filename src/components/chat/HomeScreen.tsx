@@ -170,7 +170,7 @@ const HomeScreen = ({
         </div>
       </div>;
   }
-  return <div className="w-full max-w-5xl px-6 py-8 flex flex-col items-center">
+  return <div className="course-home w-full max-w-5xl px-6 py-8 flex flex-col items-center">
       {/* User info and logout button */}
       <div className="w-full flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
@@ -184,12 +184,26 @@ const HomeScreen = ({
         </Button>
       </div>
 
-      <div className="w-32 h-auto mb-6 animate-fade-in">
-        <img src="/lovable-uploads/fd26bb69-cb53-49fe-95d0-fa9a31c08976.png" alt="Tutor Virtual" className="w-full h-auto" />
+      <div className="course-hero w-full max-w-3xl mb-8 animate-fade-in">
+        <div className="course-hero-orbit course-hero-orbit-one" />
+        <div className="course-hero-orbit course-hero-orbit-two" />
+        <div className="relative z-10 max-w-xl">
+          <div className="course-eyebrow"><Wand2 className="h-4 w-4" /> Sua jornada de idiomas</div>
+          <h1>Fluency <span>Voyage</span></h1>
+          <p>Explore o idioma, conquiste novos caminhos e transforme cada conversa em uma nova descoberta.</p>
+          <div className="course-hero-meta">
+            <span><BookOpen className="h-4 w-4" /> Trilhas práticas</span>
+            <span><Speech className="h-4 w-4" /> Conversas reais</span>
+          </div>
+        </div>
+        <div className="course-compass" aria-hidden="true">
+          <span>✦</span>
+          <strong>FV</strong>
+        </div>
       </div>
 
       {/* Progress Card */}
-      <section className="bg-white p-6 rounded-xl shadow-sm w-full max-w-3xl mb-8">
+      <section className="course-progress bg-white p-6 rounded-xl shadow-sm w-full max-w-3xl mb-8">
         <h2 className="text-xl font-bold leading-tight tracking-tight text-[var(--text-color)] mb-4">
           {tLesson('progress')}
         </h2>

@@ -1,0 +1,1 @@
+UPDATE public.group_classes SET days = 'Terça, Quinta' WHERE id IN ('d9c50079-ce69-48fb-a50d-be89668047ca','ce434518-1d26-4b55-b29f-1e4c6a5097f7');

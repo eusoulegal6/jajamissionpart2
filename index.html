@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html lang="en" spellcheck="false">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Multiple favicon formats with cache-busting and proper sizing -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/2ec8899c-17b7-47a4-9ce6-134bfff996be.png?v=1" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/2ec8899c-17b7-47a4-9ce6-134bfff996be.png?v=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png?v=1" />
+    <link rel="shortcut icon" href="/lovable-uploads/2ec8899c-17b7-47a4-9ce6-134bfff996be.png?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Horizons</title>
+    <meta name="description" content="Aulas Complementares - New Horizons. Confira as aulas complementares disponíveis. Aulas em grupo para todos os níveis!" />
+    <meta property="og:title" content="Aulas Complementares - New Horizons" />
+    <meta property="og:description" content="Confira as aulas complementares disponíveis na New Horizons. Aulas em grupo para todos os níveis!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://new-horizons.lovable.app/og-aulas-complementares.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://new-horizons.lovable.app/aulas-complementares" />
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0d6efd">
+
+    <!-- iOS Add to Home Screen support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Force favicon refresh script -->
+    <script>
+      (function() {
+        // Force favicon refresh by removing and re-adding favicon links
+        var links = document.querySelectorAll("link[rel*='icon']");
+        links.forEach(function(link) {
+          var newLink = link.cloneNode();
+          newLink.href = link.href + (link.href.indexOf('?') > -1 ? '&' : '?') + 'refresh=' + Date.now();
+          link.parentNode.replaceChild(newLink, link);
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" defer></script>
+  </body>
+</html>

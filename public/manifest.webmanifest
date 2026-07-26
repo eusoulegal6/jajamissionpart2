@@ -1,0 +1,16 @@
+{
+  "name": "New Horizons",
+  "short_name": "NewHorizons",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6efd",
+  "icons": [
+    { "src": "/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "shortcuts": [
+    { "name": "Abrir painel", "url": "/dashboard" }
+  ]
+}

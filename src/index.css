@@ -1,0 +1,430 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 1rem;
+    
+    /* Progress bar colors */
+    --primary-100: #e0f4ff;
+    --primary-400: #56cfff;
+    --primary-600: #0d99e5;
+    --text-color: #111827;
+    
+    /* ChatGPT colors */
+    --chat-bg: 0 0% 100%;
+    --header-bg: 220 14% 96%;
+    --header-color: 0 0% 13%;
+    --footer-bg: 0 0% 100%;
+    --user-message-bg: 160 53% 92%;
+    --user-message-color: 0 0% 13%;
+    --assistant-message-bg: 220 14% 96%;
+    --assistant-message-color: 0 0% 13%;
+    --chat-input-bg: 0 0% 94%;
+    --chat-input-border: 0 0% 86%;
+    --send-button-bg: 162 76% 35%;
+    --send-button-hover: 162 76% 30%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Progress bar colors for dark mode */
+    --primary-100: #1e3a8a;
+    --primary-400: #56cfff;
+    --primary-600: #0d99e5;
+    --text-color: #f9fafb;
+    
+    --chat-bg: 240 10% 3.9%;
+    --user-message-bg: 142.1 76.2% 36.3%;
+    --user-message-color: 355.7 100% 97.3%;
+    --assistant-message-bg: 240 3.7% 15.9%; 
+    --assistant-message-color: 0 0% 98%;
+    --chat-input-bg: 240 3.7% 15.9%;
+    --chat-input-border: 240 3.7% 15.9%;
+    --header-bg: 240 10% 3.9%;
+    --header-color: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overscroll-behavior: none;
+  }
+
+  /* Allow natural scrolling behavior */
+  html, body {
+    min-height: 100%;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 163, 127, 0.5);
+    border-radius: 9999px;
+  }
+  70% {
+    box-shadow: 0 0 10px 15px rgba(16, 163, 127, 0);
+    border-radius: 9999px;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 163, 127, 0);
+    border-radius: 9999px;
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-out;
+}
+
+/* New utility classes */
+@layer components {
+  /* Fixed Chat Layout - Updated for better positioning */
+  .fixed-chat-container {
+    @apply h-full w-full bg-white;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+      "header"
+      "messages" 
+      "input";
+    min-height: 100%;
+    /* Ensure proper height constraint for grid */
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* When header is hidden, adjust grid template and ensure proper height */
+  .fixed-chat-container.no-header {
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+      "messages" 
+      "input";
+    /* When used as child component, ensure it fills parent */
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  /* When used in full-screen mode */
+  .fixed-chat-container.full-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+
+  .chat-messages-area {
+    grid-area: messages;
+    @apply bg-white;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Ensure the messages area can shrink properly */
+    height: 100%;
+  }
+
+  .chat-input-area {
+    grid-area: input;
+    @apply flex-shrink-0 bg-white border-t border-[#dcdcdc];
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    /* Ensure input area always stays at bottom */
+    position: relative;
+    z-index: 10;
+  }
+
+  .chat-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    @media (min-width: 768px) {
+      max-width: 900px;
+    }
+  }
+  
+  .chat-header {
+    grid-area: header;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(var(--border));
+    background-color: hsl(var(--header-bg));
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-shrink: 0;
+    
+    @media (min-width: 768px) {
+      padding: 0 24px;
+    }
+  }
+  
+  .chat-messages {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+    overflow-y: auto;
+    /* Enable proper scrolling within constrained height */
+    min-height: 0;
+    
+    @media (min-width: 768px) {
+      max-width: 900px;
+      padding: 24px 32px;
+    }
+  }
+  
+  .message-bubble {
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-size: 15px;
+    line-height: 1.6;
+    transition: all 0.2s ease;
+  }
+  
+  .user-message {
+    background-color: hsl(var(--user-message-bg));
+    color: hsl(var(--user-message-color));
+    align-self: flex-end;
+    margin-left: 20%;
+    
+    @media (max-width: 640px) {
+      margin-left: 15%;
+    }
+  }
+  
+  .assistant-message {
+    background-color: hsl(var(--assistant-message-bg));
+    color: hsl(var(--assistant-message-color));
+    align-self: flex-start;
+    margin-right: 20%;
+    
+    @media (max-width: 640px) {
+      margin-right: 15%;
+    }
+  }
+  
+  .smooth-transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .button-hover {
+    @apply hover:bg-opacity-90 transition-colors duration-200;
+  }
+  
+  .input-focus {
+    @apply focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-200;
+  }
+  
+  /* Enhanced card styling */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+  
+  /* Settings configuration layout classes */
+  .settings-container {
+    @apply max-w-[800px] mx-auto bg-white rounded-xl border border-[#dcdcdc] p-6 md:p-8 shadow-sm;
+  }
+  
+  .settings-section {
+    @apply mb-10;
+  }
+  
+  .settings-header {
+    @apply text-xl font-medium mb-6 text-[#202123];
+  }
+  
+  .settings-options {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8;
+  }
+  
+  .settings-button {
+    @apply rounded-2xl border-[#dcdcdc] transition-all duration-200 h-12 text-base;
+  }
+  
+  .settings-button-selected {
+    @apply bg-[#10a37f] hover:bg-[#0e8e6d] text-white font-medium;
+  }
+  
+  .settings-button-unselected {
+    @apply bg-white border hover:bg-gray-50 hover:shadow-md text-[#202123];
+  }
+  
+  .settings-tip {
+    @apply bg-[#f7f7f8] rounded-xl p-5 my-8 flex items-start gap-3;
+  }
+  
+  .settings-action {
+    @apply flex md:justify-center justify-center mt-8;
+  }
+  
+  .settings-submit {
+    @apply md:w-auto md:max-w-[350px] w-full bg-[#10a37f] hover:bg-[#0e8e6d] text-white transition-colors h-12 text-base px-8 rounded-2xl hover:shadow-md;
+  }
+  
+  /* Loading screen styles */
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  .loading-fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+  }
+
+  /* Mobile-specific improvements for input area */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  /* Ensure proper input visibility on mobile */
+  @media (max-width: 768px) {
+    .chat-messages {
+      padding: 12px;
+      padding-bottom: 20px;
+    }
+    
+    .message-bubble {
+      max-width: 85%;
+    }
+    
+    .user-message {
+      margin-left: 10%;
+    }
+    
+    .assistant-message {
+      margin-right: 10%;
+    }
+
+    /* Ensure input area is always visible */
+    html {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+
+    /* Fix iOS viewport issues */
+    @supports (-webkit-touch-callout: none) {
+      html {
+        min-height: -webkit-fill-available;
+      }
+    }
+
+    /* Mobile-specific grid layout fixes */
+    .fixed-chat-container {
+      height: 100%;
+      max-height: 100vh;
+      max-height: -webkit-fill-available;
+    }
+
+    .fixed-chat-container.full-screen {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      max-height: 100vh;
+      max-height: -webkit-fill-available;
+    }
+
+    .fixed-chat-container.no-header {
+      /* On mobile, when used as child component, constrain height properly */
+      height: 100%;
+      max-height: 100%;
+    }
+  }
+}

@@ -1,0 +1,1 @@
+UPDATE public.group_classes SET link='https://meet.google.com/zbc-uemj-unw' WHERE title='Tarde iniciante';

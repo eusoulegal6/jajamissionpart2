@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import horizonsFlixIcon from "@/assets/horizons-flix-icon.png";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, HelpCircle, BookOpen, Briefcase, Gamepad2, ClipboardCheck, Headphones, Users, GraduationCap, Speech, MessageCircleQuestion, ArrowLeft, Plus, LogOut, Play, ImageIcon, Wand2 } from "lucide-react";
+import { MessageCircle, HelpCircle, BookOpen, Briefcase, Gamepad2, ClipboardCheck, Headphones, Users, GraduationCap, Speech, MessageCircleQuestion, ArrowLeft, Plus, LogOut, Play, PlayCircle, ImageIcon, Wand2, Sparkles } from "lucide-react";
 import flashcardIcon from "@/assets/flashcard-icon.png";
 import tradutorIcon from "@/assets/tradutor-icon.png";
 import textoParaVozIcon from "@/assets/texto-para-voz.png.asset.json";
@@ -170,356 +170,263 @@ const HomeScreen = ({
         </div>
       </div>;
   }
-  return <div className="course-home w-full max-w-5xl px-6 py-8 flex flex-col items-center">
-      {/* User info and logout button */}
-      <div className="w-full flex justify-between items-center mb-6">
+  return (
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col gap-6 sm:gap-8">
+      {/* Top bar */}
+      <div className="w-full flex justify-between items-center">
         <div className="flex items-center gap-3">
-          {user && <div className="text-sm text-muted-foreground">
-              {t('ola')}, {user.display_name || user.phone_number}
-            </div>}
+          {user && (
+            <div className="text-sm text-slate-600">
+              {t('ola')}, <span className="font-semibold text-slate-800">{user.display_name || user.phone_number}</span>
+            </div>
+          )}
         </div>
-        <Button onClick={logout} variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+        <Button onClick={logout} variant="ghost" size="sm" className="text-slate-500 hover:text-slate-700">
           <LogOut className="h-4 w-4 mr-2" />
           {t('sair')}
         </Button>
       </div>
 
-      <div className="course-hero w-full max-w-3xl mb-8 animate-fade-in">
-        <div className="course-hero-orbit course-hero-orbit-one" />
-        <div className="course-hero-orbit course-hero-orbit-two" />
-        <div className="relative z-10 max-w-xl">
-          <div className="course-eyebrow"><Wand2 className="h-4 w-4" /> Sua jornada de idiomas</div>
-          <h1>Fluency <span>Voyage</span></h1>
-          <p>Explore o idioma, conquiste novos caminhos e transforme cada conversa em uma nova descoberta.</p>
-          <div className="course-hero-meta">
-            <span><BookOpen className="h-4 w-4" /> Trilhas práticas</span>
-            <span><Speech className="h-4 w-4" /> Conversas reais</span>
-          </div>
-        </div>
-        <div className="course-compass" aria-hidden="true">
-          <span>✦</span>
-          <strong>FV</strong>
-        </div>
-      </div>
-
-      {/* Progress Card */}
-      <section className="course-progress bg-white p-6 rounded-xl shadow-sm w-full max-w-3xl mb-8">
-        <h2 className="text-xl font-bold leading-tight tracking-tight text-[var(--text-color)] mb-4">
-          {tLesson('progress')}
-        </h2>
-
-        <div className="space-y-4">
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <p className="text-gray-600 text-base font-medium">{tLesson('total_progress')}</p>
-              <p className="text-[var(--primary-600)] text-base font-bold">
-                {Math.max(0, Math.min(100, currentLanguageProgress))}%
+      {/* Hero */}
+      <Card className="w-full overflow-hidden border-0 shadow-lg bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white rounded-2xl animate-fade-in">
+        <CardContent className="p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-3 min-w-0">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold tracking-wide">
+                <Sparkles className="h-3.5 w-3.5" />
+                Fluency Voyage
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                {t('ola')}{user ? `, ${user.display_name || ''}` : ''}!
+              </h1>
+              <p className="text-white/75 text-sm sm:text-base max-w-md">
+                Continue explorando, praticando e conquistando novos caminhos no idioma.
               </p>
+              <div className="flex items-center gap-4 pt-1">
+                <div>
+                  <div className="text-2xl font-bold">{currentLanguageProgress}%</div>
+                  <div className="text-xs text-white/65">{tLesson('total_progress')}</div>
+                </div>
+                <div className="w-px h-10 bg-white/20" />
+                <button
+                  onClick={handleToggleLearningLanguage}
+                  className="flex items-center gap-2 rounded-lg bg-white/10 hover:bg-white/20 px-3 py-2 transition-colors"
+                >
+                  <span className="text-xl">{learningLanguage === 'en' ? '🇺🇸' : '🇪🇸'}</span>
+                  <span className="text-sm font-medium">{learningLanguage === 'en' ? 'Inglês' : 'Espanhol'}</span>
+                </button>
+              </div>
             </div>
-
-            <div className="h-3 rounded-full bg-[var(--primary-100)]">
-              <div className="h-3 rounded-full bg-gradient-to-r from-[var(--primary-400)] to-[var(--primary-600)]" style={{
-              width: `${Math.max(0, Math.min(100, currentLanguageProgress))}%`,
-              background: "linear-gradient(to right, var(--primary-400), var(--primary-600))"
-            }} role="progressbar" aria-valuenow={Math.max(0, Math.min(100, currentLanguageProgress))} aria-valuemin={0} aria-valuemax={100} />
+            <div className="hidden md:flex shrink-0">
+              <div className="relative h-28 w-28 rounded-full bg-white/10 flex items-center justify-center backdrop-blur border border-white/20">
+                <Wand2 className="h-10 w-10 text-white/60" />
+                <div className="absolute inset-3 rounded-full border border-white/10" />
+              </div>
             </div>
           </div>
+          <div className="mt-6 h-2 rounded-full bg-white/15">
+            <div
+              className="h-2 rounded-full bg-white/90 transition-all duration-700 ease-out"
+              style={{ width: `${Math.max(0, Math.min(100, currentLanguageProgress))}%` }}
+              role="progressbar"
+              aria-valuenow={Math.max(0, Math.min(100, currentLanguageProgress))}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Practice */}
+      <section className="w-full">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 px-1">Prática</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("conversation-menu")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><MessageCircle className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('pratica_conversacao')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("listening")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><Headphones className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('pratica_escuta')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("quiz")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><ClipboardCheck className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">Quiz</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("role-play")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><Users className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('simulacao')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("interview")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><Briefcase className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('entrevista_emprego')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-blue-500 hover:shadow-md hover:border-l-blue-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("perguntas")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0"><MessageCircleQuestion className="h-5 w-5 text-blue-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('perguntas')}</h3></div>
+            </CardContent>
+          </Card>
         </div>
       </section>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 w-full max-w-3xl animate-fade-in">
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handleTutorialClick}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/357aec70-5e1c-49ea-a612-aae2b59f98d3.png" alt="Tutorial" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('tutorial_card')}</h2>
+
+      {/* Learn */}
+      <section className="w-full">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 px-1">Aprender</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Card className="group cursor-pointer border-l-4 border-l-emerald-500 hover:shadow-md hover:border-l-emerald-600 transition-all duration-200 rounded-xl bg-white" onClick={handleCompleteLessons}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0"><BookOpen className="h-5 w-5 text-emerald-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('licoes_completas_card')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-emerald-500 hover:shadow-md hover:border-l-emerald-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("curso-completo")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0"><GraduationCap className="h-5 w-5 text-emerald-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('curso_completo_card')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-emerald-500 hover:shadow-md hover:border-l-emerald-600 transition-all duration-200 rounded-xl bg-white" onClick={() => navigate("/lessons")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0"><Sparkles className="h-5 w-5 text-emerald-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('pnl_card')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-emerald-500 hover:shadow-md hover:border-l-emerald-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("toefl")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0 overflow-hidden">
+                <img src={getDisplayImageUrl("https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/images/ETS_Logo%20(1).png")} alt="TOEFL" className="h-6 w-6 object-contain" />
               </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <InstallCTA />
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handleCompleteLessons}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/8cefaa7d-f6b6-44e6-845c-3142e001cd09.png" alt="Books" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('licoes_completas_card')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">TOEFL</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-emerald-500 hover:shadow-md hover:border-l-emerald-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("flashcards-menu")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0"><img src={flashcardIcon} alt="" className="h-5 w-5 object-contain" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('flashcards_card')}</h3></div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
 
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("specialist")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/8fb056c5-eff7-4a39-a6a5-a715bf7d5bbe.png" alt="Question" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('pergunte_professor')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Tools */}
+      <section className="w-full">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 px-1">Ferramentas</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Card className="group cursor-pointer border-l-4 border-l-amber-500 hover:shadow-md hover:border-l-amber-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("tradutor")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><img src={tradutorIcon} alt="" className="h-5 w-5 object-contain" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('tradutor_card')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-amber-500 hover:shadow-md hover:border-l-amber-600 transition-all duration-200 rounded-xl bg-white" onClick={() => navigate("/text-to-speech")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><img src={textoParaVozIcon.url} alt="" className="h-5 w-5 object-contain" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">Texto para Voz</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-amber-500 hover:shadow-md hover:border-l-amber-600 transition-all duration-200 rounded-xl bg-white" onClick={() => navigate("/text-correction")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><img src={correcaoDeTextoIcon.url} alt="" className="h-5 w-5 object-contain" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">Correção de Texto</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-amber-500 hover:shadow-md hover:border-l-amber-600 transition-all duration-200 rounded-xl bg-white" onClick={() => navigate("/specialist-help", { state: { showPronunciation: true } })}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><Speech className="h-5 w-5 text-amber-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">Pronúncia</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-amber-500 hover:shadow-md hover:border-l-amber-600 transition-all duration-200 rounded-xl bg-white" onClick={handleTutorialClick}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center shrink-0"><PlayCircle className="h-5 w-5 text-amber-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('tutorial_card')}</h3></div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
 
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("conversation-menu")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/a1bf6644-92da-4ed0-9da9-c34382604b7c.png" alt="Chat" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('pratica_conversacao')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* More */}
+      <section className="w-full">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 px-1">Mais</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Card className="group cursor-pointer border-l-4 border-l-purple-500 hover:shadow-md hover:border-l-purple-600 transition-all duration-200 rounded-xl bg-white" onClick={() => safeSelect("specialist")}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><HelpCircle className="h-5 w-5 text-purple-600" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('pergunte_professor')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group cursor-pointer border-l-4 border-l-purple-500 hover:shadow-md hover:border-l-purple-600 transition-all duration-200 rounded-xl bg-white" onClick={handlePrivateLessons}>
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><img src="/lovable-uploads/8772b1a6-925c-4a0b-bcc6-083cb8a79c3d.png" alt="" className="h-5 w-5 object-contain" /></div>
+              <div className="min-w-0"><h3 className="font-semibold text-sm">{t('aulas_particulares')}</h3></div>
+            </CardContent>
+          </Card>
+          <Card className="group border-l-4 border-l-purple-500/30 hover:border-l-purple-500/50 transition-all duration-200 rounded-xl bg-white opacity-60 cursor-default">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-purple-50/50 flex items-center justify-center shrink-0"><img src={horizonsFlixIcon} alt="" className="h-5 w-5 object-contain opacity-50" /></div>
+              <div className="min-w-0"><div className="flex items-center gap-2"><h3 className="font-semibold text-sm">Horizons Flix</h3><span className="inline-flex items-center rounded-full bg-amber-100 border border-amber-300 px-1.5 py-0 text-[10px] font-bold text-amber-700 uppercase tracking-wide">Em breve</span></div></div>
+            </CardContent>
+          </Card>
+          {isKrakenReleased && (
+            <>
+              <Card className="group cursor-pointer border-l-4 border-l-purple-500 hover:shadow-md hover:border-l-purple-600 transition-all duration-200 rounded-xl bg-white" onClick={handleCreateLesson}>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><Plus className="h-5 w-5 text-purple-600" /></div>
+                  <div className="min-w-0"><h3 className="font-semibold text-sm">{t('criar_licao')}</h3></div>
+                </CardContent>
+              </Card>
+              <Card className="group cursor-pointer border-l-4 border-l-purple-500 hover:shadow-md hover:border-l-purple-600 transition-all duration-200 rounded-xl bg-white" onClick={handleCreateSlideshow}>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><Play className="h-5 w-5 text-purple-600" /></div>
+                  <div className="min-w-0"><h3 className="font-semibold text-sm">{t('criar_slideshow')}</h3></div>
+                </CardContent>
+              </Card>
+              <Card className="group cursor-pointer border-l-4 border-l-purple-500 hover:shadow-md hover:border-l-purple-600 transition-all duration-200 rounded-xl bg-white" onClick={() => navigate('/admin/image-optimizer')}>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0"><ImageIcon className="h-5 w-5 text-purple-600" /></div>
+                  <div className="min-w-0"><h3 className="font-semibold text-sm">Image Optimizer</h3></div>
+                </CardContent>
+              </Card>
+            </>
+          )}
+        </div>
+      </section>
 
-        {/* HIDDEN: Conteúdo section - uncomment to restore
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("content")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/6ca0809f-bb35-458b-9f7f-a4a88fe3d76e.png" alt="Content" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Conteúdo</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        */}
+      {/* Install CTA */}
+      <InstallCTA />
 
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("quiz")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/quiz-icon.png" alt="Quiz" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Quiz 🧠</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("listening")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/16005237-1509-4d95-adc0-01010196e5f5.png" alt="Headphones" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('pratica_escuta')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("curso-completo")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={getDisplayImageUrl("https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/c/5779405.png")} alt="Curso Completo" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('curso_completo_card')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => navigate("/specialist-help", { state: { showPronunciation: true } })}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/pronunciation-icon.png" alt="Pronúncia" className="h-14 w-14 mr-5 object-contain" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Pronúncia</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("role-play")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/ca8effea-3d23-4b67-ace1-a9c2256cc58e.png" alt="Role Play" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('simulacao')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("flashcards-menu")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={flashcardIcon} alt="Flashcards" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('flashcards_card')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("interview")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/e85a76b3-d1d4-41b2-9695-c38f8c500b41.png" alt="Briefcase" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('entrevista_emprego')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("toefl")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={getDisplayImageUrl("https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/images/ETS_Logo%20(1).png")} alt="TOEFL" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">TOEFL</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => safeSelect("tradutor")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={tradutorIcon} alt="Tradutor" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('tradutor_card')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-
-
-        <Card className="bg-sky-50 border border-sky-200 hover:bg-sky-100 transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handleToggleLearningLanguage}>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-                <div className="flex-1 mr-4">
-                  <h2 className="text-lg font-bold mb-1.5 text-[#202123]">
-                    {t("mudar_aprendizado")}
-                  </h2>
-                </div>
-              <div className="text-4xl">
-                {learningLanguage === "en" ? "🇺🇸" : "🇪🇸"}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => navigate("/lessons")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={getDisplayImageUrl("https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/pows/ChatGPT%20Image%20Nov%2028,%202025,%2007_46_45%20PM%20(1).png")} alt="PNL" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('pnl_card')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => navigate("/text-to-speech")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={textoParaVozIcon.url} alt="Texto para Voz" className="h-16 w-16 mr-4 object-contain" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Texto para Voz 🔊</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => navigate("/text-correction")}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={correcaoDeTextoIcon.url} alt="Correção de Texto" className="h-16 w-16 mr-4 object-contain" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Correção de Texto ✍️</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] transition-all duration-300 rounded-2xl shadow-sm opacity-75 cursor-default">
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src={horizonsFlixIcon} alt="Horizons Flix" className="h-10 w-10 mr-5 object-contain" />
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h2 className="text-lg font-bold mb-0 text-[#202123]">Horizons Flix</h2>
-                  <span className="inline-flex items-center rounded-full bg-amber-100 border border-amber-300 px-2 py-0.5 text-[10px] font-bold text-amber-700 uppercase tracking-wide">Em breve</span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-0.5">Filmes para <strong>todos os níveis</strong></p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {isKrakenReleased && (
-          <>
-            <Card className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handleCreateLesson}>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <Plus className="h-10 w-10 mr-5 text-purple-600" />
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('criar_licao')}</h2>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handleCreateSlideshow}>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <Play className="h-10 w-10 mr-5 text-blue-600" />
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('criar_slideshow')}</h2>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={() => navigate('/admin/image-optimizer')}>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <ImageIcon className="h-10 w-10 mr-5 text-green-600" />
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Image Optimizer (New)</h2>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </>
-        )}
-
-        <Card className="bg-gradient-to-r from-[#f7f7f8] to-[#ffffff] border border-[#e8e8e8] hover:bg-gradient-to-r hover:from-[#f0f0f5] hover:to-[#fafafa] transition-all duration-300 cursor-pointer rounded-2xl shadow-sm hover:shadow-md" onClick={handlePrivateLessons}>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/8772b1a6-925c-4a0b-bcc6-083cb8a79c3d.png" alt="Aulas particulares" className="h-10 w-10 mr-5" />
-              <div className="flex-1">
-                <h2 className="text-lg font-bold mb-1.5 text-[#202123]">{t('aulas_particulares')}</h2>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Slideshow Manager - only shown when kraken is released */}
+      {/* Slideshow Manager */}
       {isKrakenReleased && (
-        <div className="w-full max-w-3xl mt-8 animate-fade-in">
+        <div className="w-full animate-fade-in">
           <SlideshowManager />
         </div>
       )}
 
+      {/* Tab Audio */}
       {showTabAudioCTA && !isTabAudioActive && (
         <div className="fixed bottom-6 right-6 z-50">
           <Button onClick={activateTabAudio}>Use audio from another tab</Button>
         </div>
       )}
-
       {isTabAudioActive && (
         <div className="fixed bottom-6 left-6 z-50 rounded-full border bg-background/95 px-3 py-1 text-sm shadow-sm">
           Using tab audio instead of mic
         </div>
       )}
-      
+
       <TutorialModal isOpen={showTutorial} onClose={() => setShowTutorial(false)} />
-    </div>;
+    </div>
+  );
 };
 export default HomeScreen;

@@ -289,7 +289,7 @@ const Index = () => {
 
   // Pick which main layout to render
   return (
-    <div className={chatHandlers.isChatInterfaceActive ? "h-screen w-full overflow-hidden bg-gray-50 flex flex-col" : "min-h-screen bg-white relative"}>
+    <div className={chatHandlers.isChatInterfaceActive ? "h-screen w-full overflow-hidden bg-gray-50 flex flex-col" : "min-h-screen bg-slate-50 relative"}>
       
       {chatHandlers.isChatInterfaceActive ? (
         <ChatLayout

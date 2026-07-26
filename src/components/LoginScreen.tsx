@@ -40,12 +40,12 @@ const LoginScreen = () => {
           <div className="w-20 h-auto mb-6 mx-auto">
             <img 
               src="/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png" 
-              alt="New Horizons" 
+              alt="Fluency Voyage"
               className="w-full h-auto"
             />
           </div>
           <h1 className="text-2xl font-semibold text-foreground mb-2">
-            Bem-vindo ao New Horizons
+            Bem-vindo ao Fluency Voyage
           </h1>
           <p className="text-muted-foreground">
             Entre com seu número de telefone para continuar

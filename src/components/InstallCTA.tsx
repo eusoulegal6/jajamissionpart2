@@ -33,7 +33,7 @@ export default function InstallCTA() {
             <Download className="h-10 w-10 mr-5 text-[#0d6efd]" />
             <div className="flex-1">
               <h2 className="text-lg font-bold mb-1.5 text-[#202123]">Instale o aplicativo</h2>
-              <p className="text-[#6e6e80] text-sm">Use o New Horizons como um app no seu dispositivo.</p>
+              <p className="text-[#6e6e80] text-sm">Use o Fluency Voyage como um app no seu dispositivo.</p>
             </div>
             <Button onClick={handleClick} className="ml-4 bg-[#0d6efd] hover:bg-[#0b5ed7] text-white rounded-xl">
               Baixar aplicativo

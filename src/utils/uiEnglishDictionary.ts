@@ -221,7 +221,7 @@ export const PT_TO_EN: Record<string, string> = {
   "Exercícios complexos com conteúdo avançado": "Complex exercises with advanced content",
 
   // Aulas Complementares / Horizons Flix
-  "Aulas Complementares - New Horizons": "Complementary Classes - New Horizons",
+  "Aulas Complementares - Fluency Voyage": "Complementary Classes - Fluency Voyage",
   "Aulas complementares": "Complementary classes",
   "Aulas complementares e plataforma de estudos": "Complementary classes and study platform",
   "Aulas gravadas por instrutores qualificados": "Classes recorded by qualified instructors",

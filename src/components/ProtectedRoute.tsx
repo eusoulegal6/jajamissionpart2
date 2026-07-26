@@ -17,7 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
           <div className="w-16 h-auto mb-2">
             <img 
               src="/lovable-uploads/27a9e05b-01c1-4f55-9cc2-6f5e6758c158.png" 
-              alt="New Horizons" 
+              alt="Fluency Voyage"
               className="w-full h-auto"
             />
           </div>

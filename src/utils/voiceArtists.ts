@@ -23,12 +23,12 @@ export const VOICE_ARTISTS: Record<string, VoiceArtist> = {
   },
   "Chad": {
     name: "Chad",
-    image: "/images/chad.jpg",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/chad.jpg",
     flag: "🇺🇸"
   },
   "Hugh": {
     name: "Hugh",
-    image: "/images/hugh.jpg",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/hugh.jpg",
     flag: "🇨🇦"
   }
 };

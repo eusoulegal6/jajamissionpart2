@@ -20,6 +20,11 @@ export const VOICE_ARTISTS: Record<string, VoiceArtist> = {
     name: "Annie",
     image: "https://newhorizonsenglishschool.com/wp-content/uploads/2025/05/annie.jpg",
     flag: "🇺🇸"
+  },
+  "Chad": {
+    name: "Chad",
+    image: "/images/chad.jpg",
+    flag: "🇺🇸"
   }
 };
 

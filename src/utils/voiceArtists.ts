@@ -25,6 +25,11 @@ export const VOICE_ARTISTS: Record<string, VoiceArtist> = {
     name: "Chad",
     image: "/images/chad.jpg",
     flag: "🇺🇸"
+  },
+  "Hugh": {
+    name: "Hugh",
+    image: "/images/hugh.jpg",
+    flag: "🇨🇦"
   }
 };
 

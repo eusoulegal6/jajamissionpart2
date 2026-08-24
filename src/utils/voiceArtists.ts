@@ -30,6 +30,11 @@ export const VOICE_ARTISTS: Record<string, VoiceArtist> = {
     name: "Hugh",
     image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/hugh.jpg",
     flag: "🇨🇦"
+  },
+  "Gabe": {
+    name: "Gabe",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/gabe.jpg",
+    flag: "🇺🇸"
   }
 };
 

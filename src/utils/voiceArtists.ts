@@ -3,22 +3,22 @@ import { VoiceArtist } from '@/types/lesson';
 export const VOICE_ARTISTS: Record<string, VoiceArtist> = {
   "Mushira Hussien": {
     name: "Mushira Hussien",
-    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/images/Musghi_HQ%20(1).png",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/mushira.jpg",
     flag: "🇺🇸"
   },
   "Nontu": {
     name: "Nontu", 
-    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/nontu.png",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/nontu.jpg",
     flag: "🇨🇦"
   },
   "Maudy": {
     name: "Maudy",
-    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/maudy.png", 
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/maudy.jpg", 
     flag: "🇨🇦"
   },
   "Annie": {
     name: "Annie",
-    image: "https://newhorizonsenglishschool.com/wp-content/uploads/2025/05/annie.jpg",
+    image: "https://mcuquzgpaeoqskesgcnx.supabase.co/storage/v1/object/public/teachers/mushira.jpg",
     flag: "🇺🇸"
   },
   "Chad": {

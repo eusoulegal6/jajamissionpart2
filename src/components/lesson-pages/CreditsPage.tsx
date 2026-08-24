@@ -38,10 +38,12 @@ const CreditsPage: React.FC<CreditsPageProps> = ({ narrator, onContinue }) => {
           
           {/* Voice Artist Image */}
           <div className="relative mb-6">
-            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg">
-              <OptimizedImg 
+            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg bg-muted">
+              <img 
                 src={voiceArtist.image} 
                 alt={voiceArtist.name}
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

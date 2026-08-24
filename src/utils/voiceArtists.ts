@@ -75,3 +75,17 @@ export const getVoiceArtist = (name: string): VoiceArtist | null => {
 export const getVoiceArtistNames = (): string[] => {
   return Object.keys(VOICE_ARTISTS);
 };
+
+// Preload all teacher avatars into browser cache on startup for 0ms credits rendering
+if (typeof window !== 'undefined') {
+  try {
+    Object.values(VOICE_ARTISTS).forEach((artist) => {
+      if (artist?.image) {
+        const img = new Image();
+        img.src = artist.image;
+      }
+    });
+  } catch (e) {
+    // Ignore in non-DOM environments
+  }
+}
